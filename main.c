@@ -3,12 +3,12 @@
 
 int main()
 {
-    double capital, tasaInteres, tiempo, monto, interes, capitalizaciones, valorPresente, terminoRenta, periodosNoPago;                                                      // Definir variables
-    char entrada[256];                                                                                                                                                       // String para almacenar la entrada
-    char modo;                                                                                                                                                               // Caracter para el modo de cálculo
-    printf("Que tipo de interes quieres calcular? (s)imple, (c)ompuesto, (t)asa nominal, (a)mortizacion, amortización (p)agos vencidos, a(m)ortización pagos anticipados "); // Preguntar lo que se quiere calcular
-    scanf("%s", entrada);                                                                                                                                                    // Almacenar input en string de entrada
-    modo = entrada[0];                                                                                                                                                       // El modo a calcular es el primer carácter de la entrada                                                                                      // El modo a calcular es el primer carácter de la entrada
+    double capital, tasaInteres, tiempo, monto, interes, capitalizaciones, valorPresente, terminoRenta, periodosNoPago, periodosAnticipados;                                                                               // Definir variables
+    char entrada[256];                                                                                                                                                                                                     // String para almacenar la entrada
+    char modo;                                                                                                                                                                                                             // Caracter para el modo de cálculo
+    printf("Que tipo de interes quieres calcular? (s)imple, (c)ompuesto, (t)asa nominal, (a)mortizacion, amortización (p)agos vencidos, a(m)ortización pagos anticipados, amortización (d)iferida de pagos anticipados "); // Preguntar lo que se quiere calcular
+    scanf("%s", entrada);                                                                                                                                                                                                  // Almacenar input en string de entrada
+    modo = entrada[0];                                                                                                                                                                                                     // El modo a calcular es el primer carácter de la entrada                                                                                      // El modo a calcular es el primer carácter de la entrada
 
     switch (modo) // Casos de modos de cálculo
     {
@@ -137,7 +137,7 @@ int main()
         modo = entrada[0];    // El modo a calcular es el primer carácter de la entrada
         switch (modo)
         {
-        case 'c':
+        case 'c': // Capital
             printf("Ingresar monto: ");
             while (scanf("%lf%c", &monto, &modo) != 2 || modo != '\n') // Si el parámetro no es válido
             {
@@ -163,7 +163,7 @@ int main()
             capital = monto / powl((1 + tasaInteres / 100), tiempo);
             printf("\nEl capital es %0.lf", capital);
             break; // Terminar caso
-        case 'm':
+        case 'm':  // Monto
             printf("Ingresar capital: ");
             while (scanf("%lf%c", &capital, &modo) != 2 || modo != '\n') // Si el parámetro no es válido
             {
@@ -190,7 +190,7 @@ int main()
             interes = monto - capital;
             printf("\nEl monto es %.0lf y el interes es %.0lf", monto, interes);
             break; // Terminar caso
-        case 'a':
+        case 'a':  // Tasa de interés
             printf("Ingresar capital: ");
             while (scanf("%lf%c", &capital, &modo) != 2 || modo != '\n') // Si el parámetro no es válido
             {
@@ -218,7 +218,7 @@ int main()
 
             printf("\nLa tasa de interes es %.4lf%%", tasaInteres);
             break; // Terminar caso
-        case 't':
+        case 't':  // Tiempo
             printf("Ingresar capital: ");
             while (scanf("%lf%c", &capital, &modo) != 2 || modo != '\n') // Si el parámetro no es válido
             {
@@ -254,7 +254,7 @@ int main()
         modo = entrada[0];    // El modo a calcular es el primer carácter de la entrada
         switch (modo)
         {
-        case 'c':
+        case 'c': // Capital
             printf("Ingresar monto: ");
             while (scanf("%lf%c", &monto, &modo) != 2 || modo != '\n') // Si el parámetro no es válido
             {
@@ -286,7 +286,7 @@ int main()
             capital = monto / powl((1 + tasaInteres / 100 / capitalizaciones), tiempo * capitalizaciones);
             printf("\nEl capital es %0.lf", capital);
             break; // Terminar caso
-        case 'm':
+        case 'm':  // Monto
             printf("Ingresar capital: ");
             while (scanf("%lf%c", &capital, &modo) != 2 || modo != '\n') // Si el parámetro no es válido
             {
@@ -320,7 +320,7 @@ int main()
             interes = monto - capital;
             printf("\nEl monto es %.0lf y el interes es %.0lf", monto, interes);
             break; // Terminar caso
-        case 'a':
+        case 'a':  // Tasa de interés
             printf("Ingresar capital: ");
             while (scanf("%lf%c", &capital, &modo) != 2 || modo != '\n') // Si el parámetro no es válido
             {
@@ -353,7 +353,7 @@ int main()
             tasaInteres = (powl(monto / capital, 1.0 / tiempo * capitalizaciones) - 1) * 100 * capitalizaciones;
             printf("\nLa tasa de interes es %.4lf%%", tasaInteres);
             break; // Terminar caso
-        case 't':
+        case 't':  // Tiempo
             printf("Ingresar capital: ");
             while (scanf("%lf%c", &capital, &modo) != 2 || modo != '\n') // Si el parámetro no es válido
             {
@@ -395,7 +395,7 @@ int main()
         modo = entrada[0];    // El modo a calcular es el primer carácter de la entrada
         switch (modo)
         {
-        case 'r':
+        case 'r': // Renta
             printf("Ingresar valor presente: ");
             while (scanf("%lf%c", &valorPresente, &modo) != 2 || modo != '\n') // Si el parámetro no es válido
             {
@@ -420,7 +420,7 @@ int main()
             terminoRenta = (valorPresente * tasaInteres / 100 * powl((1 + tasaInteres / 100), tiempo)) / (powl((1 + tasaInteres / 100), tiempo) - 1);
             printf("\nEl termino de renta es %.4lf", terminoRenta);
             break; // Terminar caso
-        case 'p':
+        case 'p':  // Valor presente
             printf("Ingresar el termino de renta: ");
             while (scanf("%lf%c", &terminoRenta, &modo) != 2 || modo != '\n') // Si el parámetro no es válido
             {
@@ -448,7 +448,7 @@ int main()
             break; // Terminar caso
         }
         break; // Terminar caso
-    case 'p':
+    case 'p':  // Amortización de pagos vencidos
         printf("Que quieres calcular? (r)enta, valor (p)resente ");
         scanf("%s", entrada); // Almacenar input en string de entrada
         modo = entrada[0];    // El modo a calcular es el primer carácter de la entrada
@@ -557,7 +557,7 @@ int main()
 
             printf("\nEl valor presente es %.4lf", valorPresente);
             break; // Terminar caso
-        case 'r':
+        case 'r':  // Término de Renta
             printf("Ingresar el valor presente: ");
             while (scanf("%lf%c", &valorPresente, &modo) != 2 || modo != '\n') // Si el parámetro no es válido
             {
@@ -586,7 +586,83 @@ int main()
             break; // Terminar caso
         }
         break;
+    case 'd': // Amortización diferida de pagos vencidos
+        printf("Que quieres calcular? (r)enta, valor (p)resente ");
+        scanf("%s", entrada); // Almacenar input en string de entrada
+        modo = entrada[0];    // El modo a calcular es el primer carácter de la entrada
+        switch (modo)
+        {
+        case 'p': // Valor Presente
+            printf("Ingresar el termino de renta: ");
+            while (scanf("%lf%c", &terminoRenta, &modo) != 2 || modo != '\n') // Si el parámetro no es válido
+            {
+                printf("Ingresar el termino de renta: ");
+                while (getchar() != '\n')
+                    ; // Mientras no se presione enter
+            }
+            printf("\nIngresar tasa de interes: ");
+            while (scanf("%lf%c", &tasaInteres, &modo) != 2 || modo != '\n') // Si el parámetro no es válido
+            {
+                printf("Ingresar tasa de interes: ");
+                while (getchar() != '\n')
+                    ; // Mientras no se presione enter
+            }
+            printf("\nIngresar tiempo: ");
+            while (scanf("%lf%c", &tiempo, &modo) != 2 || modo != '\n') // Si el parámetro no es válido
+            {
+                printf("Ingresar tiempo: ");
+                while (getchar() != '\n')
+                    ; // Mientras no se presione enter
+            }
+            printf("\nIngresar períodos anticipados: ");
+            while (scanf("%lf%c", &periodosAnticipados, &modo) != 2 || modo != '\n') // Si el parámetro no es válido
+            {
+                printf("Ingresar períodos anticipados: ");
+                while (getchar() != '\n')
+                    ; // Mientras no se presione enter
+            }
+
+            valorPresente = terminoRenta * (powl(1 + tasaInteres / 100, tiempo - periodosAnticipados) - 1) / (tasaInteres / 100 * powl(1 + tasaInteres / 100, tiempo - 1));
+
+            printf("\nEl valor presente es %.4lf", valorPresente);
+            break; // Terminar caso
+        case 'r':  // Término de Renta
+            printf("Ingresar el valor presente: ");
+            while (scanf("%lf%c", &valorPresente, &modo) != 2 || modo != '\n') // Si el parámetro no es válido
+            {
+                printf("Ingresar el termino de renta: ");
+                while (getchar() != '\n')
+                    ; // Mientras no se presione enter
+            }
+            printf("\nIngresar tasa de interes: ");
+            while (scanf("%lf%c", &tasaInteres, &modo) != 2 || modo != '\n') // Si el parámetro no es válido
+            {
+                printf("Ingresar tasa de interes: ");
+                while (getchar() != '\n')
+                    ; // Mientras no se presione enter
+            }
+            printf("\nIngresar tiempo: ");
+            while (scanf("%lf%c", &tiempo, &modo) != 2 || modo != '\n') // Si el parámetro no es válido
+            {
+                printf("Ingresar tiempo: ");
+                while (getchar() != '\n')
+                    ; // Mientras no se presione enter
+            }
+            printf("\nIngresar períodos anticipados: ");
+            while (scanf("%lf%c", &periodosAnticipados, &modo) != 2 || modo != '\n') // Si el parámetro no es válido
+            {
+                printf("Ingresar períodos anticipados: ");
+                while (getchar() != '\n')
+                    ; // Mientras no se presione enter
+            }
+
+            terminoRenta = valorPresente * tasaInteres / 100 * (powl(1 + tasaInteres / 100, tiempo - 1)) / (powl(1 + tasaInteres / 100, tiempo - periodosAnticipados) - 1);
+
+            printf("\nEl término de renta es %.4lf", terminoRenta);
+            break; // Terminar caso
+        }
+
+        getchar(); // No terminar ejecución inmediatamente
+        return 0;  // Terminar ejecución sin errores
     }
-    getchar(); // No terminar ejecución inmediatamente
-    return 0;  // Terminar ejecución sin errores
 }
