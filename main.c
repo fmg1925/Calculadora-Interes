@@ -524,7 +524,7 @@ int main()
             break; // Terminar caso
         }
         break;
-    case 'm':
+    case 'm': // Amortización de pagos anticipados
         printf("Que quieres calcular? (r)enta, valor (p)resente ");
         scanf("%s", entrada); // Almacenar input en string de entrada
         modo = entrada[0];    // El modo a calcular es el primer carácter de la entrada
@@ -586,7 +586,7 @@ int main()
             break; // Terminar caso
         }
         break;
-    case 'd': // Amortización diferida de pagos vencidos
+    case 'd': // Amortización diferida de pagos anticipados
         printf("Que quieres calcular? (r)enta, valor (p)resente ");
         scanf("%s", entrada); // Almacenar input en string de entrada
         modo = entrada[0];    // El modo a calcular es el primer carácter de la entrada
